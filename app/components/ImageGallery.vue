@@ -1,15 +1,20 @@
 <template>
   <div class="gallery-wrap">
-    <!-- Thumbnail Grid -->
-    <div class="gallery-grid">
+    <!-- Large Featured Image -->
+    <div class="gallery-featured" @click="openLightbox(featuredIndex)">
+      <img :src="images[featuredIndex]" :alt="`${label} photo ${featuredIndex + 1}`" class="featured-img" />
+      <div class="featured-overlay">🔍 Click to enlarge</div>
+    </div>
+
+    <!-- Thumbnail Strip -->
+    <div class="gallery-thumbs">
       <div
         v-for="(img, i) in images"
         :key="i"
-        class="gallery-thumb"
-        @click="openLightbox(i)"
+        :class="['gallery-thumb', { active: i === featuredIndex }]"
+        @click="featuredIndex = i"
       >
         <img :src="img" :alt="`${label} photo ${i + 1}`" loading="lazy" />
-        <div class="thumb-overlay"><span>🔍</span></div>
       </div>
     </div>
 
@@ -36,6 +41,7 @@ const props = defineProps({
 
 const lightboxOpen = ref(false)
 const current = ref(0)
+const featuredIndex = ref(0)
 
 function openLightbox(i) {
   current.value = i
@@ -66,35 +72,57 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.gallery-wrap { width: 100%; }
+.gallery-wrap { width: 100%; display: flex; flex-direction: column; gap: 10px; }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+/* Featured large image */
+.gallery-featured {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  border: 2px solid #eee;
 }
-@media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+.featured-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.gallery-featured:hover .featured-img { transform: scale(1.02); }
+.featured-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 16px 12px 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.gallery-featured:hover .featured-overlay { opacity: 1; }
+
+/* Thumbnail strip */
+.gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+@media (max-width: 600px) { .gallery-thumbs { grid-template-columns: repeat(4, 1fr); } }
 
 .gallery-thumb {
-  position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.15s;
 }
-.gallery-thumb:hover { border-color: #F5C300; transform: scale(1.02); }
+.gallery-thumb.active { border-color: #F5C300; }
+.gallery-thumb:hover { border-color: #F5C300; }
 .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.thumb-overlay {
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity 0.2s;
-  font-size: 1.5rem;
-}
-.gallery-thumb:hover .thumb-overlay { opacity: 1; }
 
 /* Lightbox */
 .lightbox {
