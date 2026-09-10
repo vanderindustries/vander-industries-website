@@ -3,7 +3,7 @@
     <ProductHero
       badge="Loading Dock Equipment"
       title="Dock Ramps"
-      description="Premium heavy-duty portable loading ramps for warehouses, truck docks, and forklift operations. 20,000 lb rated capacity. Modular foldable design for easy setup and relocation."
+      description="Premium heavy-duty portable loading ramps for warehouses, truck docks, and forklift operations. 20,000 lb rated capacity. Modular stackable design for easy setup and relocation."
       list-price="$11,999.00"
       sale-price="$9,999.00"
       savings="$2,000.00"
@@ -114,7 +114,7 @@ const rampImages = [1, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
   n => `/images/products/ebay-dock-ramp/dock-ramp-${String(n).padStart(2, '0')}.webp`
 )
 
-const rampDesc = `The 38-Foot Modular Yard Ramp (Model HL-YD-10T) is a premium heavy-duty, portable loading solution designed for demanding warehouse, dock, and forklift operations. Built to handle up to 20,000 lbs (10 tons), this ramp delivers strength, stability, and flexibility where permanent docks aren't available. Its modular foldable design allows for quick setup, easy relocation, and efficient space utilization. The long 23.5-ft slope ensures smooth, safe forklift transitions, while the spacious upper platform improves maneuverability. A reinforced steel plate deck with expanded mesh provides superior traction and durability in all working conditions.`
+const rampDesc = `The 38-Foot Modular Yard Ramp (Model HL-YD-10T) is a premium heavy-duty, portable loading solution designed for demanding warehouse, dock, and forklift operations. Built to handle up to 20,000 lbs (10 tons), this ramp delivers strength, stability, and flexibility where permanent docks aren't available. Its modular stackable design allows for quick setup, easy relocation, and efficient space utilization. The long 23.5-ft slope ensures smooth, safe forklift transitions, while the spacious upper platform improves maneuverability. A reinforced steel plate deck with expanded mesh provides superior traction and durability in all working conditions.`
 
 const overallSpecs = [
   { label: 'Length', val: '37.1 ft (444.9 in)' },
@@ -143,7 +143,7 @@ const powerSpecs = [
 ]
 
 const features = [
-  { icon: '⚙️', title: 'Modular Foldable Design', desc: 'Quick setup, easy relocation, and efficient space utilization. No permanent installation required.' },
+  { icon: '⚙️', title: 'Modular Stackable Design', desc: 'Quick setup, easy relocation, and efficient space utilization. No permanent installation required.' },
   { icon: '🔩', title: 'Reinforced Steel Deck', desc: 'Heavy-gauge steel plate with expanded mesh for superior traction and long-term durability.' },
   { icon: '🛢️', title: 'Manual Hydraulic Pump', desc: 'Simple and precise height adjustment via hydraulic pump and dual hand-crank legs — no electricity required.' },
   { icon: '🏗️', title: '20,000 lb Rated Capacity', desc: 'Handles up to 10 tons of forklift load. Built for the most demanding warehouse and logistics operations.' },
