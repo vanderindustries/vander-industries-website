@@ -153,9 +153,11 @@ defineEmits(['reserve', 'inquire'])
 .hero-product-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   border-radius: 10px;
   display: block;
+  background: #f5f5f5;
 }
 
 .hero-visual {
