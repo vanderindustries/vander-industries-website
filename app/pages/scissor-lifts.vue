@@ -327,20 +327,25 @@ const applications = [
 }
 .variant-selector {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
 }
+.variant-selector::-webkit-scrollbar { display: none; }
 .variant-btn {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 12px 18px;
+  padding: 10px 16px;
   border: 2px solid rgba(255,255,255,0.15);
   border-radius: 8px;
   background: rgba(255,255,255,0.05);
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
-  min-width: 160px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .variant-btn:hover {
   border-color: #F5C300;
