@@ -3,10 +3,10 @@
     <ProductHero
       badge="Aerial Work Platforms"
       title="Electric Scissor Lifts"
-      description="Vander Industries 20FT Slim Electric Scissor Lift — 20 ft working height, 500 lb capacity. Compact, powerful, and built for indoor and outdoor use. Wholesale direct."
-      list-price="$11,999.00"
-      sale-price="$8,999.00"
-      savings="$3,000.00"
+      description="Choose your model below. 20FT platform height, up to 507 lb capacity. Brand new 2026, 0 hours. Wholesale direct from Los Angeles."
+      :list-price="currentVariant.listPrice"
+      :sale-price="currentVariant.salePrice"
+      :savings="currentVariant.savings"
       reserve-label="Reserve This Unit Now"
       image-src="/images/products/scissor-lift/scissor-lift-01.webp"
       @reserve="reserveOpen = true"
@@ -16,21 +16,42 @@
     <!-- Product Section -->
     <section class="section">
       <div class="container">
+
+        <!-- Variant Selector -->
+        <div class="variant-selector">
+          <button
+            v-for="v in variants"
+            :key="v.id"
+            :class="['variant-btn', { active: selectedVariant === v.id }]"
+            @click="selectedVariant = v.id"
+          >
+            <span class="vb-name">{{ v.name }}</span>
+            <span class="vb-price">{{ v.salePrice }}</span>
+          </button>
+        </div>
+
         <div class="product-card">
           <div class="product-card-inner">
             <div class="product-images">
-              <ImageGallery :images="liftImages" label="Electric Scissor Lift" :start-index="1" />
+              <ImageGallery :images="currentVariant.images" :label="currentVariant.name" :start-index="1" />
             </div>
             <div class="product-details">
               <div class="badge">2026 Model — Brand New, 0 Hours</div>
-              <h2 class="product-name">20FT Slim Electric Scissor Lift</h2>
-              <p class="product-subtitle">Vander Industries · Model Year 2026 · Platform Height 20–21 ft</p>
-              <p class="product-desc">{{ liftDesc }}</p>
+              <h2 class="product-name">{{ currentVariant.name }}</h2>
+              <p class="product-subtitle">Vander Industries · Model Year 2026 · {{ currentVariant.subtitle }}</p>
+              <p class="product-desc">{{ currentVariant.desc }}</p>
 
-              <div class="spec-group mt-24">
+              <!-- Inline price display -->
+              <div class="variant-price-block">
+                <span class="vp-list"><s>{{ currentVariant.listPrice }}</s></span>
+                <span class="vp-sale">{{ currentVariant.salePrice }}</span>
+                <span class="vp-save">You Save {{ currentVariant.savings }}</span>
+              </div>
+
+              <div class="spec-group mt-16">
                 <h4 class="spec-group-title">Technical Specifications</h4>
                 <div class="spec-table">
-                  <div class="spec-row" v-for="s in techSpecs" :key="s.label">
+                  <div class="spec-row" v-for="s in currentVariant.specs" :key="s.label">
                     <span class="spec-label">{{ s.label }}</span>
                     <span class="spec-val">{{ s.val }}</span>
                   </div>
@@ -40,7 +61,7 @@
               <div class="spec-group mt-16">
                 <h4 class="spec-group-title">Key Features</h4>
                 <ul class="features-list">
-                  <li v-for="f in keyFeatures" :key="f">✅ {{ f }}</li>
+                  <li v-for="f in currentVariant.features" :key="f">✅ {{ f }}</li>
                 </ul>
               </div>
 
@@ -88,8 +109,8 @@
       </div>
     </section>
 
-    <ReserveModal v-model="reserveOpen" product-name="20FT Electric Scissor Lift" />
-    <InquiryModal v-model="inquireOpen" product-name="20FT Electric Scissor Lift" />
+    <ReserveModal v-model="reserveOpen" :product-name="currentVariant.name" />
+    <InquiryModal v-model="inquireOpen" :product-name="currentVariant.name" />
   </div>
 </template>
 
@@ -101,38 +122,79 @@ useSeoMeta({
 
 const reserveOpen = ref(false)
 const inquireOpen = ref(false)
+const selectedVariant = ref('slim')
 
-// Keep only real scissor lift product shots — removed logos, forklifts, ads, unrelated items
-const keepPhotos = [1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
-const liftImages = keepPhotos.map(n => `/images/products/scissor-lift/scissor-lift-${String(n).padStart(2, '0')}.webp`)
+const slimPhotos = [1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map(
+  n => `/images/products/scissor-lift/scissor-lift-${String(n).padStart(2, '0')}.webp`
+)
+// Wide model uses same photos until dedicated photos are available
+const widePhotos = slimPhotos
 
-const liftDesc = `The Vander Industries 20FT Slim Electric Scissor Lift delivers professional-grade elevation in a compact, maneuverable package. Designed for indoor and outdoor use, this 2026 model features a 20-foot working platform height, a 500 lb rated capacity, and a whisper-quiet electric drive system. The slim profile allows access through standard doorways, making it ideal for warehouses, retail buildouts, facility maintenance, and construction finishing work. Zero emissions, low noise, and 110V–240V single-phase input make it ready to plug in anywhere.`
-
-const techSpecs = [
-  { label: 'Equipment Type', val: 'Electric Scissor Lift' },
-  { label: 'Make', val: 'Vander Industries' },
-  { label: 'Model Year', val: '2026' },
-  { label: 'Condition', val: 'New — 0 Hours' },
-  { label: 'Platform Height', val: '20–21 ft' },
-  { label: 'Maximum Working Height', val: '~26 ft (platform + 6 ft overhead reach)' },
-  { label: 'Platform Capacity', val: '500 lb (227 kg)' },
-  { label: 'Power Source', val: 'Electric — 110V–240V, Single Phase' },
-  { label: 'Drive Type', val: 'Electric Hydraulic' },
-  { label: 'Towable / Drivable', val: 'Towable / Trailer Mounted' },
-  { label: 'Certifications', val: 'CE, ANSI' },
-  { label: 'Country of Origin', val: 'China' },
+const variants = [
+  {
+    id: 'slim',
+    name: '20FT Slim Electric Scissor Lift',
+    subtitle: 'Platform Height 20–21 ft · Slim Profile',
+    listPrice: '$11,999.00',
+    salePrice: '$9,499.99',
+    savings: '$2,500.01',
+    images: slimPhotos,
+    desc: 'The Vander Industries 20FT Slim Electric Scissor Lift delivers professional-grade elevation in a compact, maneuverable package. The slim profile allows access through standard doorways, making it ideal for warehouses, retail buildouts, facility maintenance, and construction work. Zero emissions, 110V–240V single-phase input, ready to plug in anywhere.',
+    specs: [
+      { label: 'Model', val: 'VAN-003 — 20FT Slim' },
+      { label: 'Platform Height', val: '20–21 ft' },
+      { label: 'Maximum Working Height', val: '~26 ft' },
+      { label: 'Platform Capacity', val: '500 lb (227 kg)' },
+      { label: 'Power Source', val: 'Electric — 110V–240V, Single Phase' },
+      { label: 'Drive Type', val: 'Electric Hydraulic' },
+      { label: 'Condition', val: 'New — 0 Hours' },
+      { label: 'Certifications', val: 'CE, ANSI' },
+    ],
+    features: [
+      'Slim profile — fits through standard doorways',
+      '3-Year Lithium Battery — long runtime, fast charge',
+      'Flexible Side Guardrail — easy loading and safe operation',
+      'Enhanced Non-Slip Deck — maximum grip on elevated platform',
+      'Hydraulic Overload Protection System',
+      'Zero emissions — safe for indoor environments',
+      '2-Year Manufacturer Warranty included',
+    ]
+  },
+  {
+    id: 'wide',
+    name: '20FT Wide Electric Scissor Lift',
+    subtitle: 'Platform Height 19\'8" (6M) · Wide Platform',
+    listPrice: '$12,400.00',
+    salePrice: '$9,999.00',
+    savings: '$2,401.00',
+    images: widePhotos,
+    desc: 'The Vander Industries 20FT Wide Electric Scissor Lift offers a larger 7\'7" × 2\'8" platform for jobs requiring more working space. With a 507 lb capacity, Curtis USA controller, 4x Lithium Ion batteries, and a full suite of safety systems, this unit is built for demanding commercial and industrial environments.',
+    specs: [
+      { label: 'Model', val: 'VAN-004 — 20FT Wide' },
+      { label: 'Lifting Height', val: '6M (19\' 8")' },
+      { label: 'Working Height', val: '8M (26\' 3")' },
+      { label: 'Platform Size', val: '7\' 7" × 2\' 8" × 3\' 8"' },
+      { label: 'Overall Size', val: '8\' 2" × 2\' 8" × 7\' 2"' },
+      { label: 'Load Capacity', val: '507 lbs (230 kg)' },
+      { label: 'Machine Weight', val: '4,145 lbs (1,880 kg)' },
+      { label: 'Batteries', val: '4x Lithium Ion' },
+      { label: 'Controller', val: 'Curtis USA' },
+      { label: 'Condition', val: 'New — 0 Hours' },
+    ],
+    features: [
+      'Wide platform 7\'7" × 2\'8" — more room for tools and crew',
+      'Overload Alarm — prevents unsafe loading',
+      'Tilted Alarm — alerts operator on uneven surfaces',
+      'Non-Marking Tires — safe for finished floors',
+      'Pothole Protection System',
+      'Curtis USA Controller — industry-leading reliability',
+      '4x Lithium Ion Batteries — long run time',
+      '2-Year Manufacturer Warranty included',
+    ]
+  }
 ]
 
-const keyFeatures = [
-  'Fully Compact Profile — fits through standard doorways',
-  '3-Year Lithium Battery — long runtime, fast charge',
-  'Flexible Side Guardrail — easy loading and safe operation',
-  '2-in-1 Working Rate — variable speed control',
-  'Enhanced Non-Slip Deck — maximum grip on elevated platform',
-  'Hydraulic Overload Protection System',
-  'Zero emissions — safe for indoor environments',
-  '2-Year Manufacturer Warranty included',
-]
+const currentVariant = computed(() => variants.find(v => v.id === selectedVariant.value))
 
 const applications = [
   { icon: '🏭', title: 'Warehouse & Storage', desc: 'Access high shelving, lighting, and overhead systems in warehouses and distribution centers.' },
@@ -145,6 +207,50 @@ const applications = [
 </script>
 
 <style scoped>
+/* Variant selector */
+.variant-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.variant-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 20px;
+  border: 2px solid var(--gray-200);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  min-width: 180px;
+}
+.variant-btn:hover { border-color: #F5C300; }
+.variant-btn.active { border-color: #F5C300; background: #fffbea; }
+.vb-name { font-size: 0.85rem; font-weight: 700; color: var(--black); }
+.vb-price { font-size: 1.1rem; font-weight: 900; color: var(--black); margin-top: 2px; }
+
+/* Inline price block */
+.variant-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.vp-list { font-size: 0.9rem; color: #999; text-decoration: line-through; }
+.vp-sale { font-size: 1.8rem; font-weight: 900; color: var(--black); }
+.vp-save {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(245,195,0,0.2);
+  border: 1px solid rgba(245,195,0,0.5);
+  color: #7a5c00;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
 .product-card {
   background: #fff;
   border: 1px solid var(--gray-100);
