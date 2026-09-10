@@ -84,10 +84,11 @@ onUnmounted(() => {
   overflow: hidden;
   cursor: zoom-in;
   border: 2px solid #eee;
+  background: #f5f5f5;
 }
 .featured-img {
   width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.3s;
 }
@@ -123,7 +124,7 @@ onUnmounted(() => {
 }
 .gallery-thumb.active { border-color: #F5C300; }
 .gallery-thumb:hover { border-color: #F5C300; }
-.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: contain; background: #f5f5f5; display: block; }
 
 /* Lightbox */
 .lightbox {
