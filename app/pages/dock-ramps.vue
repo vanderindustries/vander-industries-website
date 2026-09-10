@@ -4,7 +4,10 @@
       badge="Loading Dock Equipment"
       title="Dock Ramps"
       description="Premium heavy-duty portable loading ramps for warehouses, truck docks, and forklift operations. 20,000 lb rated capacity. Modular foldable design for easy setup and relocation."
-      starting-price="Request a Quote"
+      list-price="$11,999.00"
+      sale-price="$9,999.00"
+      savings="$2,000.00"
+      reserve-label="Reserve This Unit Now"
       image-src="/images/products/ebay-dock-ramp/dock-ramp-01.webp"
       @reserve="reserveOpen = true"
       @inquire="inquireOpen = true"
@@ -51,7 +54,7 @@
               </div>
             </div>
             <div class="product-actions mt-32">
-              <button class="btn btn-primary" @click="reserveOpen = true">Reserve This Product</button>
+              <button class="btn btn-primary" @click="reserveOpen = true">Reserve This Unit Now</button>
               <button class="btn btn-outline" @click="inquireOpen = true">Request More Info</button>
             </div>
           </div>
@@ -86,7 +89,7 @@
           <span>20,000 lb Capacity · Anti-Corrosion Treated · Ships Nationwide</span>
         </div>
         <div class="sticky-cta-btns">
-          <button class="btn btn-primary" @click="reserveOpen = true">Reserve This Product</button>
+          <button class="btn btn-primary" @click="reserveOpen = true">Reserve This Unit Now</button>
           <button class="btn btn-outline" @click="inquireOpen = true">Request More Info</button>
         </div>
       </div>

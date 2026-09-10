@@ -10,9 +10,19 @@
           <span class="meta-pill">🛡️ 2-Year Warranty</span>
           <span class="meta-pill">🚚 Ships in 1–2 Days</span>
         </div>
+        <div v-if="listPrice" class="hero-pricing">
+          <div class="price-row">
+            <span class="list-price">List Price: <s>{{ listPrice }}</s></span>
+          </div>
+          <div class="price-row">
+            <span class="wholesale-label">Wholesale Direct Price</span>
+            <span class="wholesale-price">{{ salePrice }}</span>
+          </div>
+          <div class="price-savings" v-if="savings">You Save {{ savings }} — Wholesale Direct</div>
+        </div>
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" @click="$emit('reserve')">
-            Reserve — $500 Deposit
+            {{ reserveLabel }}
           </button>
           <button class="btn btn-outline-white btn-lg" @click="$emit('inquire')">
             Request More Info
@@ -40,6 +50,10 @@ defineProps({
   title: String,
   description: String,
   startingPrice: { type: String, default: 'Call for Price' },
+  listPrice: { type: String, default: '' },
+  salePrice: { type: String, default: '' },
+  savings: { type: String, default: '' },
+  reserveLabel: { type: String, default: 'Reserve This Unit Now' },
   emoji: { type: String, default: '🏭' },
   imageBg: { type: String, default: '#1a1a1a' },
   imageSrc: { type: String, default: '' },
@@ -177,6 +191,52 @@ defineEmits(['reserve', 'inquire'])
   text-transform: uppercase;
   letter-spacing: 0.05em;
   opacity: 0.7;
+}
+
+/* Pricing block */
+.hero-pricing {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.list-price {
+  color: #aaa;
+  font-size: 1rem;
+}
+.list-price s {
+  color: #888;
+  text-decoration-color: #F5C300;
+  font-weight: 600;
+}
+.wholesale-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #F5C300;
+  font-weight: 700;
+}
+.wholesale-price {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.price-savings {
+  display: inline-block;
+  background: rgba(245,195,0,0.15);
+  border: 1px solid rgba(245,195,0,0.3);
+  color: #F5C300;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: fit-content;
 }
 
 @media (max-width: 900px) {
