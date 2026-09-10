@@ -234,7 +234,7 @@ const variants = [
     salePrice: '$10,799.00',
     savings: '$2,200.00',
     images: widePhotos,
-    desc: 'The Vander Industries 26FT Wide Electric Scissor Lift is the most capable unit in our lineup. A massive 992 lb load capacity, 32' 10" working height, and wide 7\'5" × 3\'8" platform make it the right choice for heavy industrial work, large crews, and demanding high-bay environments. 110V, 60hz, 2-Phase power input.',
+    desc: 'The Vander Industries 26FT Wide Electric Scissor Lift is the most capable unit in our lineup. A massive 992 lb load capacity, 32 ft 10 in working height, and wide 7\'5" × 3\'8" platform make it the right choice for heavy industrial work, large crews, and demanding high-bay environments. 110V, 60hz, 2-Phase power input.',
     specs: [
       { label: 'Model', val: 'VAN-006' },
       { label: 'Lift Height', val: "26' 3\"" },
