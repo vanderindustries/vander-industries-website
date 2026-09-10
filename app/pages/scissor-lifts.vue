@@ -259,6 +259,39 @@ const variants = [
       '2-Year Manufacturer Warranty included',
     ]
   },
+  {
+    id: 'wide-33',
+    name: '33FT Wide Electric Scissor Lift',
+    subtitle: 'Lift Height 33 ft · Working Height ~39 ft · Wide Platform · 705 lb Capacity',
+    listPrice: '$16,499.00',
+    salePrice: '$12,999.00',
+    savings: '$3,500.00',
+    images: widePhotos,
+    desc: 'The Vander Industries 33FT Wide Electric Scissor Lift is our tallest and most powerful model. Reaching a 12M (39\' 4\") working height with a 705 lb capacity and wide 7\'5" × 3\'8" platform, it handles the most demanding high-bay industrial tasks. Hydraulic legs for added stability, Curtis USA controller, and 110V 60hz 2-Phase power input.',
+    specs: [
+      { label: 'Model', val: 'VAN-007' },
+      { label: 'Lift Height', val: "10M (32' 10\")" },
+      { label: 'Working Height', val: "12M (39' 4\")" },
+      { label: 'Platform Size', val: "7' 5\" × 3' 8\" × 3' 8\"" },
+      { label: 'Overall Size', val: "8' 9\" × 5' 5\" × 8' 4\"" },
+      { label: 'Load Capacity', val: '705 lbs (320 kg)' },
+      { label: 'Machine Weight', val: '3,415 lbs (2,910 kg)' },
+      { label: 'Batteries', val: '4x Lithium Ion' },
+      { label: 'Controller', val: 'Curtis USA' },
+      { label: 'Voltage', val: '110V, 60hz, 2 Phase' },
+      { label: 'Condition', val: 'New — 0 Hours' },
+    ],
+    features: [
+      'Tallest model — reaches 39\' 4\" working height',
+      'Wide platform 7\'5" × 3\'8" — room for crew and equipment',
+      'Hydraulic Legs — enhanced stability at max height',
+      'Overload Alarm — prevents unsafe loading',
+      'Tilted Alarm — alerts on uneven surfaces',
+      'Non-Marking Tires — safe for finished floors',
+      'Pothole Protection System',
+      '2-Year Manufacturer Warranty included',
+    ]
+  },
 ]
 
 const currentVariant = computed(() => variants.find(v => v.id === selectedVariant.value))
