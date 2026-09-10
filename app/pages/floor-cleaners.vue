@@ -128,8 +128,9 @@ const selectedVariant = ref('v33as')
 const asImages = Array.from({ length: 16 }, (_, i) =>
   `/images/products/floor-cleaner-as/floor-as-${String(i + 1).padStart(2, '0')}.webp`
 )
-const msImages = Array.from({ length: 23 }, (_, i) =>
-  `/images/products/floor-cleaner-ms/floor-ms-${String(i + 1).padStart(2, '0')}.webp`
+// Removed 02-07 (competitor machines + logo) — 17 clean Vander product shots remain
+const msImages = [1, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23].map(
+  n => `/images/products/floor-cleaner-ms/floor-ms-${String(n).padStart(2, '0')}.webp`
 )
 
 const variants = [
