@@ -64,19 +64,26 @@
 <script setup>
 import statesData from '~/data/us-states.json';
 
+const props = defineProps({
+  zonePrices: {
+    type: Object,
+    default: () => ({ 1: 1500, 2: 2000, 3: 2500, 4: 3000, 5: 3500 })
+  }
+})
+
 const mapRef = ref(null)
 const states = statesData
 
-const zoneDefs = [
-  { zone: 1, color: '#F5C300', price: 1500, transit: '3–5', label: 'West Coast' },
-  { zone: 2, color: '#F59300', price: 2000, transit: '4–6', label: 'Mountain' },
-  { zone: 3, color: '#5BA4CF', price: 2500, transit: '5–7', label: 'Midwest' },
-  { zone: 4, color: '#52B788', price: 3000, transit: '6–8', label: 'South' },
-  { zone: 5, color: '#9B72CF', price: 3500, transit: '7–9', label: 'Northeast' },
-]
+const zoneDefs = computed(() => [
+  { zone: 1, color: '#F5C300', price: props.zonePrices[1], transit: '3–5', label: 'West Coast' },
+  { zone: 2, color: '#F59300', price: props.zonePrices[2], transit: '4–6', label: 'Mountain' },
+  { zone: 3, color: '#5BA4CF', price: props.zonePrices[3], transit: '5–7', label: 'Midwest' },
+  { zone: 4, color: '#52B788', price: props.zonePrices[4], transit: '6–8', label: 'South' },
+  { zone: 5, color: '#9B72CF', price: props.zonePrices[5], transit: '7–9', label: 'Northeast' },
+])
 
 function zoneColor(z) {
-  return zoneDefs.find(d => d.zone === z)?.color || '#ccc'
+  return zoneDefs.value.find(d => d.zone === z)?.color || '#ccc'
 }
 
 const tt = reactive({ visible: false, x: 0, y: 0, name: '', zone: 0, price: 0, dateFrom: '', dateTo: '' })
@@ -97,7 +104,7 @@ function fmtDate(d) {
 }
 
 function onEnter(e, s) {
-  const def = zoneDefs.find(d => d.zone === s.zone)
+  const def = zoneDefs.value.find(d => d.zone === s.zone)
   const wrapRect = mapRef.value.getBoundingClientRect()
   const [minDays, maxDays] = def.transit.split('–').map(Number)
   const today = new Date()
