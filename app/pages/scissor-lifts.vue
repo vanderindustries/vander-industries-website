@@ -19,7 +19,7 @@
         <div class="product-card">
           <div class="product-card-inner">
             <div class="product-images">
-              <ImageGallery :images="liftImages" label="Electric Scissor Lift" :start-index="8" />
+              <ImageGallery :images="liftImages" label="Electric Scissor Lift" :start-index="1" />
             </div>
             <div class="product-details">
               <div class="badge">2026 Model — Brand New, 0 Hours</div>
@@ -102,10 +102,9 @@ useSeoMeta({
 const reserveOpen = ref(false)
 const inquireOpen = ref(false)
 
-// All 37 photos from eBay listing — show all
-const liftImages = Array.from({ length: 37 }, (_, i) =>
-  `/images/products/scissor-lift/scissor-lift-${String(i + 1).padStart(2, '0')}.webp`
-)
+// Keep only real scissor lift product shots — removed logos, forklifts, ads, unrelated items
+const keepPhotos = [1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+const liftImages = keepPhotos.map(n => `/images/products/scissor-lift/scissor-lift-${String(n).padStart(2, '0')}.webp`)
 
 const liftDesc = `The Vander Industries 6M Slim Electric Scissor Lift delivers professional-grade elevation in a compact, maneuverable package. Designed for indoor and outdoor use, this 2026 model features a 20-foot working platform height, a 500 lb rated capacity, and a whisper-quiet electric drive system. The slim profile allows access through standard doorways, making it ideal for warehouses, retail buildouts, facility maintenance, and construction finishing work. Zero emissions, low noise, and 110V–240V single-phase input make it ready to plug in anywhere.`
 
