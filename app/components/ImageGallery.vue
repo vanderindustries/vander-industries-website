@@ -36,12 +36,13 @@
 <script setup>
 const props = defineProps({
   images: { type: Array, required: true },
-  label: { type: String, default: 'Product' }
+  label: { type: String, default: 'Product' },
+  startIndex: { type: Number, default: 0 }
 })
 
 const lightboxOpen = ref(false)
 const current = ref(0)
-const featuredIndex = ref(0)
+const featuredIndex = ref(props.startIndex)
 
 function openLightbox(i) {
   current.value = i

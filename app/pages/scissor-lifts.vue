@@ -19,7 +19,7 @@
         <div class="product-card">
           <div class="product-card-inner">
             <div class="product-images">
-              <ImageGallery :images="liftImages" label="Electric Scissor Lift" />
+              <ImageGallery :images="liftImages" label="Electric Scissor Lift" :start-index="8" />
             </div>
             <div class="product-details">
               <div class="badge">2026 Model — Brand New, 0 Hours</div>
