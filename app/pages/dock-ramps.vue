@@ -19,7 +19,7 @@
         <div class="product-card">
           <div class="product-card-inner">
           <div class="product-images">
-            <ImageGallery :images="rampImages" label="Dock Ramp" />
+            <ImageGallery :images="rampImages" label="Dock Ramp" :start-index="4" />
           </div>
           <div class="product-details">
             <div class="badge">38-Foot Modular — 20,000 lb Capacity</div>
