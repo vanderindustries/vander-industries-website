@@ -5,8 +5,7 @@
       title="Dock Ramps"
       description="Premium heavy-duty portable loading ramps for warehouses, truck docks, and forklift operations. 20,000 lb rated capacity. Modular foldable design for easy setup and relocation."
       starting-price="Request a Quote"
-      emoji="🏭"
-      image-bg="#1a2a1a"
+      image-src="/images/products/ebay-dock-ramp/dock-ramp-01.webp"
       @reserve="reserveOpen = true"
       @inquire="inquireOpen = true"
     />
@@ -107,7 +106,10 @@ useSeoMeta({
 const reserveOpen = ref(false)
 const inquireOpen = ref(false)
 
-const rampImages = Array.from({ length: 28 }, (_, i) => `/images/products/ebay-dock-ramp/dock-ramp-${String(i + 1).padStart(2, '0')}.webp`)
+// Removed photos 02-08 (unrelated parts/logos) and 28 (watermark) — 20 clean product photos
+const rampImages = [1, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].map(
+  n => `/images/products/ebay-dock-ramp/dock-ramp-${String(n).padStart(2, '0')}.webp`
+)
 
 const rampDesc = `The 38-Foot Modular Yard Ramp (Model HL-YD-10T) is a premium heavy-duty, portable loading solution designed for demanding warehouse, dock, and forklift operations. Built to handle up to 20,000 lbs (10 tons), this ramp delivers strength, stability, and flexibility where permanent docks aren't available. Its modular foldable design allows for quick setup, easy relocation, and efficient space utilization. The long 23.5-ft slope ensures smooth, safe forklift transitions, while the spacious upper platform improves maneuverability. A reinforced steel plate deck with expanded mesh provides superior traction and durability in all working conditions.`
 

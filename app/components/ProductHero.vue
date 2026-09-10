@@ -20,8 +20,9 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="product-image-box" :style="{ background: imageBg }">
-          <span class="product-emoji">{{ emoji }}</span>
+        <div class="product-image-box" :style="imageSrc ? {} : { background: imageBg }">
+          <img v-if="imageSrc" :src="imageSrc" :alt="title" class="hero-product-img" />
+          <span v-else class="product-emoji">{{ emoji }}</span>
         </div>
         <div class="price-badge">
           Starting at<br/>
@@ -41,6 +42,7 @@ defineProps({
   startingPrice: { type: String, default: 'Call for Price' },
   emoji: { type: String, default: '🏭' },
   imageBg: { type: String, default: '#1a1a1a' },
+  imageSrc: { type: String, default: '' },
 })
 defineEmits(['reserve', 'inquire'])
 </script>
@@ -135,6 +137,13 @@ defineEmits(['reserve', 'inquire'])
 .product-emoji {
   font-size: 6rem;
   opacity: 0.7;
+}
+.hero-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
 }
 
 .hero-visual {
