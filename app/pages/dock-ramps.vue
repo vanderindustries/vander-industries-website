@@ -15,18 +15,9 @@
     <section class="section">
       <div class="container">
         <div class="product-card">
+          <div class="product-card-inner">
           <div class="product-images">
-            <img :src="activeImg" alt="38-Foot Modular Yard Ramp HL-YD-10T" class="main-img" />
-            <div class="thumbs">
-              <img
-                v-for="(img, i) in rampImages"
-                :key="i"
-                :src="img"
-                :class="['thumb', { active: activeImg === img }]"
-                @click="activeImg = img"
-                alt="Dock Ramp view"
-              />
-            </div>
+            <ImageGallery :images="rampImages" label="Dock Ramp" />
           </div>
           <div class="product-details">
             <div class="badge">38-Foot Modular — 20,000 lb Capacity</div>
@@ -64,6 +55,7 @@
               <button class="btn btn-primary" @click="reserveOpen = true">Reserve This Product</button>
               <button class="btn btn-outline" @click="inquireOpen = true">Request More Info</button>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -115,13 +107,7 @@ useSeoMeta({
 const reserveOpen = ref(false)
 const inquireOpen = ref(false)
 
-const rampImages = [
-  '/images/products/dock-ramp-1.webp',
-  '/images/products/dock-ramp-2.webp',
-  '/images/products/dock-ramp-3.webp',
-  '/images/products/dock-ramp-4.webp',
-]
-const activeImg = ref(rampImages[0])
+const rampImages = Array.from({ length: 28 }, (_, i) => `/images/products/ebay-dock-ramp/dock-ramp-${String(i + 1).padStart(2, '0')}.webp`)
 
 const rampDesc = `The 38-Foot Modular Yard Ramp (Model HL-YD-10T) is a premium heavy-duty, portable loading solution designed for demanding warehouse, dock, and forklift operations. Built to handle up to 20,000 lbs (10 tons), this ramp delivers strength, stability, and flexibility where permanent docks aren't available. Its modular foldable design allows for quick setup, easy relocation, and efficient space utilization. The long 23.5-ft slope ensures smooth, safe forklift transitions, while the spacious upper platform improves maneuverability. A reinforced steel plate deck with expanded mesh provides superior traction and durability in all working conditions.`
 
@@ -163,37 +149,25 @@ const features = [
 
 <style scoped>
 .product-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
   background: #fff;
   border: 1px solid var(--gray-100);
   border-radius: 16px;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
-@media (max-width: 768px) {
-  .product-card { grid-template-columns: 1fr; padding: 24px; gap: 32px; }
+.product-card-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
-.product-images { display: flex; flex-direction: column; gap: 12px; }
-.main-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--gray-100);
+@media (max-width: 900px) {
+  .product-card { padding: 24px; gap: 32px; }
+  .product-card-inner { grid-template-columns: 1fr; gap: 32px; }
 }
-.thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
-.thumb {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 2px solid var(--gray-100);
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-.thumb.active, .thumb:hover { border-color: #F5C300; }
+.product-images { width: 100%; }
 .product-name { font-size: 1.6rem; font-weight: 900; margin: 12px 0 4px; color: var(--black); }
 .product-subtitle { color: var(--gray-700); font-size: 0.9rem; margin-bottom: 16px; }
 .product-desc { color: var(--gray-700); font-size: 0.95rem; line-height: 1.7; }
