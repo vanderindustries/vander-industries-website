@@ -40,6 +40,10 @@
             <label>Email</label>
             <input v-model="form.email" type="email" placeholder="john@company.com" />
           </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input v-model="form.phone" type="tel" placeholder="(555) 555-5555" />
+          </div>
 
           <div class="form-group">
             <label>Card Details</label>
@@ -72,7 +76,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const config = useRuntimeConfig()
-const form = reactive({ name: '', email: '' })
+const form = reactive({ name: '', email: '', phone: '' })
 const loading = ref(false)
 const success = ref(false)
 const errorMsg = ref('')
@@ -92,6 +96,7 @@ watch(() => props.modelValue, async (val) => {
     errorMsg.value = ''
     form.name = ''
     form.email = ''
+    form.phone = ''
   }
 })
 
@@ -122,8 +127,8 @@ async function initStripe() {
 }
 
 async function submitPayment() {
-  if (!form.name || !form.email) {
-    errorMsg.value = 'Please fill in your name and email.'
+  if (!form.name || !form.email || !form.phone) {
+    errorMsg.value = 'Please fill in your name, email, and phone number.'
     return
   }
 
@@ -137,6 +142,7 @@ async function submitPayment() {
         billing_details: {
           name: form.name,
           email: form.email,
+          phone: form.phone,
         },
       },
       return_url: `${window.location.origin}/thank-you`,
