@@ -13,11 +13,10 @@
       @inquire="inquireOpen = true"
     />
 
-    <!-- Product Section -->
-    <section class="section">
+    <!-- Variant Selector Banner -->
+    <section class="variant-section">
       <div class="container">
-
-        <!-- Variant Selector -->
+        <p class="variant-label">Select Your Model</p>
         <div class="variant-selector">
           <button
             v-for="v in variants"
@@ -29,7 +28,12 @@
             <span class="vb-price">{{ v.salePrice }}</span>
           </button>
         </div>
+      </div>
+    </section>
 
+    <!-- Product Section -->
+    <section class="section">
+      <div class="container">
         <div class="product-card">
           <div class="product-card-inner">
             <div class="product-images">
@@ -307,29 +311,58 @@ const applications = [
 </script>
 
 <style scoped>
-/* Variant selector */
+/* Variant selector bar */
+.variant-section {
+  background: #111;
+  padding: 20px 0;
+  border-bottom: 3px solid #F5C300;
+}
+.variant-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #F5C300;
+  margin: 0 0 12px;
+}
 .variant-selector {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .variant-btn {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 14px 20px;
-  border: 2px solid var(--gray-200);
-  border-radius: 10px;
-  background: #fff;
+  padding: 12px 18px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
-  min-width: 180px;
+  min-width: 160px;
 }
-.variant-btn:hover { border-color: #F5C300; }
-.variant-btn.active { border-color: #F5C300; background: #fffbea; }
-.vb-name { font-size: 0.85rem; font-weight: 700; color: var(--black); }
-.vb-price { font-size: 1.1rem; font-weight: 900; color: var(--black); margin-top: 2px; }
+.variant-btn:hover {
+  border-color: #F5C300;
+  background: rgba(245,195,0,0.08);
+}
+.variant-btn.active {
+  border-color: #F5C300;
+  background: rgba(245,195,0,0.12);
+}
+.vb-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.variant-btn.active .vb-name { color: #F5C300; }
+.vb-price {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #F5C300;
+  margin-top: 3px;
+}
 
 /* Inline price block */
 .variant-price-block {
