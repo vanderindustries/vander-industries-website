@@ -3,10 +3,10 @@
     <ProductHero
       badge="Aerial Work Platforms"
       title="Electric Scissor Lifts"
-      description="Vander Industries 6M Slim Electric Scissor Lift — 20 ft working height, 500 lb capacity. Compact, powerful, and built for indoor and outdoor use. Wholesale direct."
+      description="Vander Industries 20FT Slim Electric Scissor Lift — 20 ft working height, 500 lb capacity. Compact, powerful, and built for indoor and outdoor use. Wholesale direct."
       list-price="$11,999.00"
-      sale-price="$9,999.00"
-      savings="$2,000.00"
+      sale-price="$8,999.00"
+      savings="$3,000.00"
       reserve-label="Reserve This Unit Now"
       image-src="/images/products/scissor-lift/scissor-lift-01.webp"
       @reserve="reserveOpen = true"
@@ -23,7 +23,7 @@
             </div>
             <div class="product-details">
               <div class="badge">2026 Model — Brand New, 0 Hours</div>
-              <h2 class="product-name">6M Slim Electric Scissor Lift</h2>
+              <h2 class="product-name">20FT Slim Electric Scissor Lift</h2>
               <p class="product-subtitle">Vander Industries · Model Year 2026 · Platform Height 20–21 ft</p>
               <p class="product-desc">{{ liftDesc }}</p>
 
@@ -78,7 +78,7 @@
     <section class="sticky-cta-band">
       <div class="container sticky-cta-inner">
         <div>
-          <strong>6M Slim Electric Scissor Lift — 20 ft Platform</strong>
+          <strong>20FT Slim Electric Scissor Lift — 20 ft Platform</strong>
           <span>500 lb Capacity · 2026 Model · Ships Nationwide from Los Angeles</span>
         </div>
         <div class="sticky-cta-btns">
@@ -88,15 +88,15 @@
       </div>
     </section>
 
-    <ReserveModal v-model="reserveOpen" product-name="6M Electric Scissor Lift" />
-    <InquiryModal v-model="inquireOpen" product-name="6M Electric Scissor Lift" />
+    <ReserveModal v-model="reserveOpen" product-name="20FT Electric Scissor Lift" />
+    <InquiryModal v-model="inquireOpen" product-name="20FT Electric Scissor Lift" />
   </div>
 </template>
 
 <script setup>
 useSeoMeta({
   title: 'Electric Scissor Lifts — Wholesale Pricing | Vander Industries',
-  description: 'Vander Industries 6M Slim Electric Scissor Lift. 20 ft working height, 500 lb capacity, 2026 model. Wholesale direct pricing. Ships nationwide from Los Angeles in 1–2 business days.',
+  description: 'Vander Industries 20FT Slim Electric Scissor Lift. 20 ft working height, 500 lb capacity, 2026 model. Wholesale direct pricing. Ships nationwide from Los Angeles in 1–2 business days.',
 })
 
 const reserveOpen = ref(false)
@@ -106,15 +106,15 @@ const inquireOpen = ref(false)
 const keepPhotos = [1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
 const liftImages = keepPhotos.map(n => `/images/products/scissor-lift/scissor-lift-${String(n).padStart(2, '0')}.webp`)
 
-const liftDesc = `The Vander Industries 6M Slim Electric Scissor Lift delivers professional-grade elevation in a compact, maneuverable package. Designed for indoor and outdoor use, this 2026 model features a 20-foot working platform height, a 500 lb rated capacity, and a whisper-quiet electric drive system. The slim profile allows access through standard doorways, making it ideal for warehouses, retail buildouts, facility maintenance, and construction finishing work. Zero emissions, low noise, and 110V–240V single-phase input make it ready to plug in anywhere.`
+const liftDesc = `The Vander Industries 20FT Slim Electric Scissor Lift delivers professional-grade elevation in a compact, maneuverable package. Designed for indoor and outdoor use, this 2026 model features a 20-foot working platform height, a 500 lb rated capacity, and a whisper-quiet electric drive system. The slim profile allows access through standard doorways, making it ideal for warehouses, retail buildouts, facility maintenance, and construction finishing work. Zero emissions, low noise, and 110V–240V single-phase input make it ready to plug in anywhere.`
 
 const techSpecs = [
   { label: 'Equipment Type', val: 'Electric Scissor Lift' },
   { label: 'Make', val: 'Vander Industries' },
   { label: 'Model Year', val: '2026' },
   { label: 'Condition', val: 'New — 0 Hours' },
-  { label: 'Platform Height', val: "20–21 ft (6M)" },
-  { label: 'Maximum Working Height', val: "~25.6 ft (6M + 1.8M)" },
+  { label: 'Platform Height', val: '20–21 ft' },
+  { label: 'Maximum Working Height', val: '~26 ft (platform + 6 ft overhead reach)' },
   { label: 'Platform Capacity', val: '500 lb (227 kg)' },
   { label: 'Power Source', val: 'Electric — 110V–240V, Single Phase' },
   { label: 'Drive Type', val: 'Electric Hydraulic' },
